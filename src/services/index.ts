@@ -2,15 +2,19 @@ import { LoginResDataType } from "@/types/fetchResponse";
 import request from "@/utils/request";
 
 interface FetchLoginParamsType {
-    account: string;
-    password: string;
-    from: string;
+  templateId: string;
+  customerId: string;
+  gradeValue: string;
+  classValue: string;
+  account: string;
+  password: string;
+  from: string;
 }
 
 const fetchLogin = (
-    params: FetchLoginParamsType
+  params: FetchLoginParamsType
 ): Promise<ResDataType<LoginResDataType>> => {
-    return request.post("login", params);
+  return request.post("login", params);
 };
 
-export { fetchLogin }
+export { fetchLogin };
