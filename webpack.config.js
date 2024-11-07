@@ -31,7 +31,6 @@ module.exports = {
       },
       {
         test: /\.css$/i, // 处理 CSS 文件
-        exclude: /node_modules/,
         use: ["style-loader", "css-loader"], // 使用 style-loader 和 css-loader
       },
       {
