@@ -5,17 +5,14 @@ import styles from "../index.module.css";
 
 interface QuestionPropsType {
   question: QuestionType;
-  groupStartIndex: number;
-  selfIndex: number;
+  questionIndex: number;
 }
 
 const Question: React.FC<QuestionPropsType> = (props) => {
-  const { question, groupStartIndex, selfIndex } = props;
+  const { question, questionIndex } = props;
   return (
     <div className={styles.questionContainer}>
-      <div className={styles.questionName}>{`${
-        groupStartIndex + selfIndex + 1
-      }、${question.questionName}`}</div>
+      <div className={styles.questionName}>{`${questionIndex}、${question.questionName}`}</div>
       <div className={styles.optionContainer}>
         {question?.questionOptions?.map((questionOption) => (
           <QuestionOption
