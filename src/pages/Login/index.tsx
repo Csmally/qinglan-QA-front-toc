@@ -56,23 +56,19 @@ const LoginPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.panel}>
+        <div className={styles.logContainer}>
+          <div className={styles.logoimg}></div>
+          <div className={styles.companyName}>清岚教育咨询有限公司</div>
+        </div>
         <Input
           value={account}
           placeholder="请输入账号"
-          style={{
-            "--color": "#ffffff",
-            "--font-size": "1.3rem",
-          }}
           className={styles.inputContainer}
           onChange={changeAccount}
         />
         <Input
           value={password}
           placeholder="请输入密码"
-          style={{
-            "--color": "#ffffff",
-            "--font-size": "1.3rem",
-          }}
           className={styles.inputContainer}
           onChange={changePassWord}
         />
