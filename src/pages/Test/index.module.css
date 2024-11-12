@@ -29,6 +29,21 @@
     margin-bottom: 1rem;
 }
 
+.errorQuestionContainer {
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    animation: blinkError 1s ease-in-out 3;
+}
+
+@keyframes blinkError {
+    0%, 100% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: rgb(255, 183, 183);
+    }
+}
+
 .questionName {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
@@ -44,15 +59,44 @@
         padding-left: 0; /* 屏幕宽度大于 600px 时，设置为 0 */
         display: flex;
     }
+} 
+
+.optionBox {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.singleOptionBox {
+.optionselect {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.4rem;
+    width: 1.4rem;
+    height: 0.7rem;
+    border: 5px solid transparent;
+    border-left: 5px solid #1cc42a;
+    border-bottom: 5px solid #1cc42a;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    animation: drawCheck 0.1s ease-out forwards;
+}
+
+@keyframes drawCheck {
+    0% {
+      transform: rotate(-45deg) scaleX(0) scaleY(0);
+    }
+    100% {
+      transform: rotate(-45deg) scaleX(1) scaleY(1);
+    }
+}
+
+.optionShowText {
     font-size: 1rem;
     padding: 0.5rem 0;
 }
 
 @media (min-width: 600px) {
-    .singleOptionBox {
+    .optionShowText {
         margin-right: 10rem;
     }
 }

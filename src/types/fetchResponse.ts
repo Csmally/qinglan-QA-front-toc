@@ -64,6 +64,14 @@ interface QuestionOptionType {
   value: string;
 }
 
+interface AnswerType {
+  studentId: number;
+  templateId: number;
+  questionId: number;
+  groupOptionId: number;
+  answerId?: number;
+}
+
 export {
   SingleStudentType,
   LoginResDataType,
@@ -73,4 +81,5 @@ export {
   QuestionOptionType,
   ClassType,
   CustomerType,
+  AnswerType,
 };
