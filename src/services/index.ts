@@ -1,4 +1,4 @@
-import { LoginResDataType } from "@/types/fetchResponse";
+import { AnswerType, LoginResDataType } from "@/types/fetchResponse";
 import request from "@/utils/request";
 
 interface FetchLoginParamsType {
@@ -9,10 +9,24 @@ interface FetchLoginParamsType {
   from: string;
 }
 
+interface FetchAddAnswerParamsType {
+  templateId: number;
+  customerId: number;
+  classId: number;
+  studentId: number;
+  answers: AnswerType[];
+}
+
 const fetchLogin = (
   params: FetchLoginParamsType
 ): Promise<ResDataType<LoginResDataType>> => {
   return request.post("login", params);
 };
 
-export { fetchLogin };
+const fetchAddAnswer = (
+  params: FetchAddAnswerParamsType
+): Promise<ResDataType<any>> => {
+  return request.post("addAnswer/add", params);
+};
+
+export { fetchLogin, fetchAddAnswer };

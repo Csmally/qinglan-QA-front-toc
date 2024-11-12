@@ -2,6 +2,9 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const isDev = process.env.NODE_ENV === "development" ? true : false;
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+
 const envFile = isDev ? "./.env.development" : "./.env.production";
 module.exports = {
   entry: "./src/index.tsx", // 入口文件改为 TypeScript
@@ -40,6 +43,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html", // 指定 HTML 模板
       favicon: "./src/public/logo.png", // 指定 favicon 路径

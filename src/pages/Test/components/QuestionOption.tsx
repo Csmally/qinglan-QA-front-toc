@@ -21,7 +21,7 @@ const QuestionOption: React.FC<QuestionOptionPropsType> = (props) => {
     const singleAnswer = answers.find(
       (answer) => answer.questionId === questionId
     )!;
-    singleAnswer.answerId = questionOption.id;
+    singleAnswer.questionAnswerId = questionOption.id;
     setCurrentSelectOption(questionOption.id);
   }, [answers, questionId, questionOption.id, setCurrentSelectOption]);
   return (

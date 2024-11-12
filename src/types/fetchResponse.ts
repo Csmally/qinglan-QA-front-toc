@@ -12,10 +12,10 @@ interface LoginResDataType {
   name?: string;
   password: string;
   sex?: string;
-  token?: string;
+  token: string;
   template: TemplateType;
-  classBelong?: ClassType;
-  customerBelong?: CustomerType;
+  classBelong: ClassType;
+  customerBelong: CustomerType;
 }
 
 interface ClassType {
@@ -65,11 +65,13 @@ interface QuestionOptionType {
 }
 
 interface AnswerType {
+  customerId: number;
+  classId: number;
   studentId: number;
   templateId: number;
   questionId: number;
   groupOptionId: number;
-  answerId?: number;
+  questionAnswerId?: number;
 }
 
 export {

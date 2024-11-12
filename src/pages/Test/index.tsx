@@ -5,16 +5,19 @@ import useUserInfoStore from "@/store/userInfoStore";
 import { AnswerType, QuestionType } from "@/types/fetchResponse";
 import Question from "./components/Question";
 import { TestCtx } from "./utils/ctx";
+import { fetchAddAnswer } from "@/services";
+import { useNavigate } from "react-router-dom";
 
 const TestPage: React.FC = () => {
   // http://localhost:8083/#/?templateId=1&customerId=1
+  const navigate = useNavigate();
   const { userInfo } = useUserInfoStore();
   const timer = useRef<any>();
   const [noSelectQuestionId, setNoSelectQuestionId] = useState(-1);
   const { template } = userInfo;
-  const submitTest = useCallback(() => {
+  const submitTest = useCallback(async () => {
     for (let i = 0; i < answers.current.length; i++) {
-      if (!answers.current[i].answerId) {
+      if (!answers.current[i].questionAnswerId) {
         Toast.show({ content: "请完成全部题目后提交" });
         const questionDom = document.getElementById(
           `question-dom-${answers.current[i].questionId}`
@@ -34,8 +37,23 @@ const TestPage: React.FC = () => {
         return;
       }
     }
-    console.log("9898answers", answers.current);
-  }, []);
+    const { code } = await fetchAddAnswer({
+      answers: answers.current,
+      templateId: userInfo.template.id,
+      customerId: userInfo.customerBelong.id,
+      classId: userInfo.classBelong.id,
+      studentId: userInfo.id,
+    });
+    if (code === 0) {
+      navigate("/result", { replace: true });
+    }
+  }, [
+    navigate,
+    userInfo.classBelong.id,
+    userInfo.customerBelong.id,
+    userInfo.id,
+    userInfo.template.id,
+  ]);
   const questions = useMemo(() => {
     const result: QuestionType[] = [];
     template?.groupOptions?.forEach((groupOption) => {
@@ -46,6 +64,8 @@ const TestPage: React.FC = () => {
     return result;
   }, [template?.groupOptions]);
   const initAnswers: AnswerType[] = questions.map((question) => ({
+    customerId: userInfo.customerBelong.id,
+    classId: userInfo.classBelong.id,
     studentId: userInfo.id,
     templateId: template.id,
     questionId: question.id,
