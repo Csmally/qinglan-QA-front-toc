@@ -4,8 +4,6 @@ import request from "@/utils/request";
 interface FetchLoginParamsType {
   templateId: string;
   customerId: string;
-  gradeValue: string;
-  classValue: string;
   account: string;
   password: string;
   from: string;

@@ -13,8 +13,25 @@ interface LoginResDataType {
   password: string;
   sex?: string;
   token?: string;
-  classId?: number;
   template: TemplateType;
+  classBelong?: ClassType;
+  customerBelong?: CustomerType;
+}
+
+interface ClassType {
+  id: number;
+  class: string;
+  classText: string;
+  customerId: number;
+  grade: string;
+  gradeText: string;
+}
+
+interface CustomerType {
+  id: number;
+  desc: string;
+  name: string;
+  templateId: number;
 }
 
 interface TemplateType {
@@ -54,4 +71,6 @@ export {
   GroupOptionType,
   QuestionType,
   QuestionOptionType,
+  ClassType,
+  CustomerType,
 };

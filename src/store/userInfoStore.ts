@@ -9,17 +9,30 @@ interface UserInfoStoreType {
 const useUserInfoStore = create<UserInfoStoreType>((set) => ({
   userInfo: {
     id: -1,
-    token: "",
-    name: "",
-    sex: "0",
     account: "",
     password: "",
-    classId: -1,
     template: {
       id: -1,
       name: "",
       desc: "",
-      groupOptions: [],
+      groupOptions: []
+    },
+    name: "",
+    sex: "-1",
+    token: "",
+    classBelong: {
+      id: -1,
+      class: "",
+      classText: "",
+      customerId: -1,
+      grade: "",
+      gradeText: "",
+    },
+    customerBelong: {
+      id: -1,
+      desc: "",
+      name: "",
+      templateId: -1,
     },
   },
   setUserInfo: (userInfo) => set({ userInfo }),
