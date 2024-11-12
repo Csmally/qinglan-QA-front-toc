@@ -46,7 +46,7 @@ module.exports = {
     new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html", // 指定 HTML 模板
-      favicon: "./src/public/logo.png", // 指定 favicon 路径
+      // favicon: "./src/public/logo.png", // 指定 favicon 路径
     }),
     new Dotenv({ path: envFile }),
   ],
