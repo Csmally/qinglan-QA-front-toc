@@ -2,8 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const isDev = process.env.NODE_ENV === "development" ? true : false;
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const envFile = isDev ? "./.env.development" : "./.env.production";
 module.exports = {
@@ -43,10 +41,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html", // 指定 HTML 模板
-      // favicon: "./src/public/logo.png", // 指定 favicon 路径
+      favicon: "./src/public/favicon.png", // 指定 favicon 路径
     }),
     new Dotenv({ path: envFile }),
   ],
