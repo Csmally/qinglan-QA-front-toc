@@ -1,9 +1,27 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 const isDev = process.env.NODE_ENV === "development" ? true : false;
 
 const envFile = isDev ? "./.env.development" : "./.env.production";
+
+const plugins = [
+  new HtmlWebpackPlugin({
+    template: "./src/index.html", // 指定 HTML 模板
+    favicon: "./src/public/favicon.png", // 指定 favicon 路径
+  }),
+  new Dotenv({ path: envFile }),
+]
+
+if (!isDev) {
+  plugins.push(new BundleAnalyzerPlugin({
+    analyzerMode: 'server', // 在浏览器中展示报告
+    openAnalyzer: true,    // 打包后自动打开报告页面
+  }))
+}
+
 module.exports = {
   entry: "./src/index.tsx", // 入口文件改为 TypeScript
   output: {
@@ -40,13 +58,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html", // 指定 HTML 模板
-      favicon: "./src/public/favicon.png", // 指定 favicon 路径
-    }),
-    new Dotenv({ path: envFile }),
-  ],
+  plugins: plugins,
   devServer: {
     static: {
       directory: path.join(__dirname, "dist"),
@@ -54,5 +66,5 @@ module.exports = {
     compress: true,
     port: 8083,
   },
-  mode: "development", // 开发模式
+  mode: isDev ? "development" : "production",
 };

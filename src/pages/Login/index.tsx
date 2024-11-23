@@ -58,7 +58,7 @@ const LoginPage: React.FC = () => {
       <div className={styles.panel}>
         <div className={styles.logContainer}>
           <div className={styles.logoimg}></div>
-          <div className={styles.companyName}>清岚教育咨询有限公司</div>
+          <div className={styles.companyName}>万籁亿光科技有限公司</div>
         </div>
         <Input
           value={account}
